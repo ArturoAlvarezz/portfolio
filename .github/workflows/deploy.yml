@@ -11,6 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -36,6 +39,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
+          platforms: linux/amd64,linux/arm64
           push: true
           tags: arturoalvarez/portfolio:latest
           cache-from: type=registry,ref=arturoalvarez/portfolio:cache
