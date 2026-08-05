@@ -1,35 +1,45 @@
-# Portfolio — Arturo Alvarez
+# Portfolio - Arturo Álvarez
 
-Mi sitio web personal, construido con React + Vite.
+Portfolio personal construido con React 19 y Vite. La interfaz sigue una dirección brutalista/editorial con contenido enfocado en Cloud, DevOps, infraestructura, observabilidad y redes SDN.
 
-🚀 **Live:** https://arturoalvarez.site
+**Live:** https://arturoalvarez.site
 
 ## Desarrollo
 
+Requisitos: Node 24 y pnpm 10.12.1.
+
 ```bash
-npm install
-npm run dev      # Desarrollo
-npm run build    # Producción
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-## Deploy automático
+## Verificación
 
-Cada push a `main`:
+```bash
+pnpm lint
+pnpm test:coverage
+pnpm build
+```
 
-1. **GitHub Actions** construye el sitio y la imagen Docker
-2. Sube `arturoalvarez/portfolio:latest` a Docker Hub
-3. **Watchtower** detecta la nueva imagen y redeploya en el servidor (~5 min)
+Los tests usan Vitest, jsdom y React Testing Library. El reporte HTML de cobertura se genera en `coverage/`.
 
-### Secrets de GitHub necesarios
+## Producción
 
-| Secret | Descripción |
-|--------|-------------|
-| `DOCKER_USERNAME` | Tu usuario de Docker Hub (`arturoalvarez`) |
-| `DOCKER_TOKEN` | Token de acceso de Docker Hub |
+El Dockerfile sirve el contenido generado de `dist/` mediante Nginx, por lo que el build debe existir antes de construir la imagen:
 
-## Stack
+```bash
+pnpm build
+docker build -t arturoalvarez/portfolio:latest .
+```
 
-- **Frontend:** React 19 + Vite 8
-- **Servidor:** Nginx (alpine)
-- **Container:** Docker, gestionado por Dockge
-- **Dominio:** Cloudflare Tunnel → `arturoalvarez.site`
+Los pushes a `main` ejecutan lint, tests y build en GitHub Actions antes de publicar la imagen multi-arquitectura `arturoalvarez/portfolio:latest`.
+
+El workflow requiere los secrets `DOCKER_USERNAME` y `DOCKER_TOKEN`.
+
+## Estructura
+
+- `src/data/portfolio.js`: contenido profesional y casos de estudio.
+- `src/pages/`: home y página reutilizable de proyectos.
+- `src/components/`: layout, hero, secciones, proyectos, movimiento y terminal.
+- `public/images/hero/`: variantes responsive del David digital.
+- `public/cv.pdf`: currículum descargable.

@@ -1,63 +1,20 @@
-# Portfolio — Arturo Alvarez
+# Agent Instructions
 
-Sitio web personal / portafolio de Arturo Alvarez.
+## App
 
-**Stack:** Vite + React + Docker + Nginx  
-**URL:** https://arturoalvarez.site  
-**Puerto local:** 8090  
-**Imagen Docker:** `arturoalvarez/portfolio:latest`
+- React 19 + Vite app with `BrowserRouter`: `/` renders the section-based home and `/projects/:slug` renders case studies. Nginx provides the SPA fallback.
+- `src/data/portfolio.js` is the content source; keep public claims aligned with `public/cv.pdf`. Do not invent metrics, experience, or project outcomes.
+- Page composition lives in `src/pages/`; reusable UI is grouped under `src/components/`. Global visual tokens, responsive rules, CRT overlays, and reduced-motion behavior live in `src/App.css`.
+- Root-path assets belong in `public/`. The hero uses responsive WebP files under `public/images/hero/`; `dist/` and `coverage/` are generated.
 
----
+## Commands
 
-## Comandos
+- Use Node 24 and pnpm 10.12.1. Install with `pnpm install --frozen-lockfile`; do not generate an npm lockfile.
+- Run `pnpm dev`, `pnpm lint`, `pnpm test:coverage`, and `pnpm build`. Tests use Vitest + Testing Library with browser mocks in `src/test/setup.js`.
+- Run checks in this order: `pnpm lint` -> `pnpm test:coverage` -> `pnpm build`.
+- The Dockerfile serves an existing `dist/`; run `pnpm build` before `docker build -t arturoalvarez/portfolio:latest .`.
 
-```bash
-# Instalar dependencias
-npm install
+## Deployment
 
-# Desarrollo (hot-reload)
-npm run dev
-
-# Build producción
-npm run build
-
-# Build Docker
-docker build -t arturoalvarez/portfolio:latest .
-
-# Push a Docker Hub
-docker push arturoalvarez/portfolio:latest
-```
-
-## Despliegue
-
-El deploy es automático vía GitHub Actions + Watchtower:
-
-1. Pushear a `main` en GitHub
-2. GitHub Actions construye el sitio y sube la imagen a Docker Hub
-3. Watchtower detecta el nuevo `:latest` y redeploya en el servidor (~5 min)
-
-## Estructura
-
-```
-portfolio/
-├── src/              # Código fuente React
-│   ├── App.jsx
-│   ├── App.css
-│   ├── main.jsx
-│   ├── index.css
-│   └── assets/
-├── public/           # Archivos estáticos
-├── dist/             # Build output (generado)
-├── index.html
-├── nginx.conf        # Config de Nginx para SPA
-├── Dockerfile        # Imagen de producción
-└── vite.config.js
-```
-
-## Notas
-
-- SPA con React, routing vía `react-router` implícito en `index.html`
-- Nginx configurado para SPA (`try_files $uri /index.html`)
-- Cache de assets estáticos: 1 año con `immutable`
-- Contenedor gestionado por Dockge en `/opt/stacks/portfolio/`
-- Sin límite de recursos por ahora (64M reservados)
+- `.github/workflows/deploy.yml` runs the full check sequence on Node 24, then publishes `arturoalvarez/portfolio:latest` for `linux/amd64` and `linux/arm64` on pushes to `main` or manual dispatch.
+- Docker Hub publishing requires `DOCKER_USERNAME` and `DOCKER_TOKEN` GitHub Actions secrets. Never add credentials to the repository.
