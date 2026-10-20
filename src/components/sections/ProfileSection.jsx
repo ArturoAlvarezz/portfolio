@@ -11,7 +11,7 @@ export function ProfileSection() {
           <h3 id="profile-title">INFRASTRUCTURE IS A HUMAN SYSTEM.</h3>
           <p>{profile.statement}</p>
           <p>
-            Egresado de Ingeniería Civil en Computación de la Universidad de Talca. Mi práctica combina
+            Ingeniero Civil en Computación de la Universidad de Talca. Mi práctica combina
             operación, automatización y criterio técnico para construir sistemas mantenibles.
           </p>
         </div>

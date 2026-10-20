@@ -4,6 +4,7 @@ import { Hero } from '../components/hero/Hero.jsx'
 import { SiteFooter } from '../components/layout/SiteFooter.jsx'
 import { SiteHeader } from '../components/layout/SiteHeader.jsx'
 import { CrtOverlay, NoiseOverlay } from '../components/motion/Overlays.jsx'
+import { CertificationsSection } from '../components/sections/CertificationsSection.jsx'
 import { ContactSection } from '../components/sections/ContactSection.jsx'
 import { ExperienceSection } from '../components/sections/ExperienceSection.jsx'
 import { ProfileSection } from '../components/sections/ProfileSection.jsx'
@@ -51,6 +52,7 @@ export function HomePage({ onOpenTerminal }) {
         <ExperienceSection />
         <ProjectsSection />
         <StackSection />
+        <CertificationsSection />
         <ContactSection onOpenTerminal={onOpenTerminal} />
       </main>
       <SiteFooter />

@@ -78,6 +78,7 @@ describe('portfolio', () => {
     expect(screen.getByText(/system_index/i)).toBeInTheDocument()
     const mobileMenu = screen.getByText(/system_index/i).parentElement
     expect(within(mobileMenu).getByRole('link', { name: /^\[03\]projects$/i })).toBeInTheDocument()
+    expect(within(mobileMenu).getByRole('link', { name: /^\[05\]certifications$/i })).toBeInTheDocument()
 
     await user.click(toggle)
     expect(screen.queryByText(/system_index/i)).not.toBeInTheDocument()
@@ -122,6 +123,10 @@ describe('portfolio', () => {
     await user.type(command, 'stack{Enter}')
     expect(within(terminal).getByText(/CLOUD & INFRASTRUCTURE/i)).toBeInTheDocument()
 
+    await user.type(command, 'certifications{Enter}')
+    expect(within(terminal).getByText(/AWS Certified AI Practitioner \(AIF-C01\)/i)).toBeInTheDocument()
+    expect(within(terminal).getByText(/credly.com\/badges\/fd7c4f63/i)).toBeInTheDocument()
+
     await user.type(command, 'contact{Enter}')
     expect(within(terminal).getByText(/arturoalvareezz@gmail.com/i)).toBeInTheDocument()
 
@@ -138,6 +143,23 @@ describe('portfolio', () => {
     await user.click(screen.getByRole('button', { name: /cerrar terminal/i }))
     expect(terminal).not.toHaveAttribute('open')
     expect(screen.getByRole('button', { name: /abrir terminal integrada/i })).toBeInTheDocument()
+  })
+
+  it('renders the certifications section with its verified credential', () => {
+    renderRoute()
+
+    const section = screen.getByRole('heading', { level: 2, name: 'CERTIFICATIONS' }).closest('section')
+    expect(within(section).getByRole('heading', { level: 3, name: /AWS Certified AI Practitioner/i })).toBeInTheDocument()
+    expect(within(section).getByText('AIF-C01')).toBeInTheDocument()
+    expect(within(section).getByRole('img', { name: /insignia de aws certified ai practitioner/i })).toHaveAttribute(
+      'src',
+      '/images/certifications/aws-certified-ai-practitioner.png',
+    )
+    expect(within(section).getByText('Amazon Web Services')).toBeInTheDocument()
+    expect(within(section).getByRole('link', { name: /view credential/i })).toHaveAttribute(
+      'href',
+      'https://www.credly.com/badges/fd7c4f63-5704-4c47-939a-1ad699cf7ddb/public_url',
+    )
   })
 
   it('renders a project case study from its slug', () => {

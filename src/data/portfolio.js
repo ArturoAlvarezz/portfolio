@@ -6,7 +6,7 @@ export const profile = {
   status: 'Available for opportunities',
   email: 'arturoalvareezz@gmail.com',
   summary:
-    'Egresado de Ingeniería Civil en Computación orientado a Cloud Computing, DevOps y Site Reliability Engineering. Construyo infraestructura observable, automatizada y resiliente.',
+    'Ingeniero Civil en Computación orientado a Cloud Computing, DevOps y Site Reliability Engineering. Construyo infraestructura observable, automatizada y resiliente.',
   statement:
     'Trabajo en la intersección entre infraestructura cloud, redes y automatización: desde servidores Linux y pipelines CI/CD hasta Kubernetes, SDN y observabilidad.',
 }
@@ -16,6 +16,7 @@ export const navigation = [
   { id: 'experience', label: 'EXPERIENCE' },
   { id: 'projects', label: 'PROJECTS' },
   { id: 'stack', label: 'STACK' },
+  { id: 'certifications', label: 'CERTIFICATIONS' },
   { id: 'contact', label: 'CONTACT' },
 ]
 
@@ -41,7 +42,7 @@ export const projects = [
       { label: 'Detected attacks', value: '100%' },
     ],
     context:
-      'Proyecto de memoria de título de Ingeniería Civil en Computación. El laboratorio modeló una red AMI distribuida con siete medidores inteligentes y un concentrador de datos virtual.',
+      'Proyecto de memoria de título de Ingeniería Civil en Computación. El laboratorio modeló una red AMI distribuida con siete medidores inteligentes y siete concentradores de datos virtuales.',
     constraints: [
       'Operación distribuida sobre infraestructura de laboratorio.',
       'Redundancia y recuperación frente a fallas de conectividad.',
@@ -242,6 +243,17 @@ export const experience = [
       'Soporte tecnológico y atención de requerimientos de usuarios.',
       'Configuración de equipos y documentación de soluciones.',
     ],
+  },
+]
+
+export const certifications = [
+  {
+    name: 'AWS Certified AI Practitioner',
+    code: 'AIF-C01',
+    issuer: 'Amazon Web Services',
+    issued: 'Septiembre 2026',
+    href: 'https://www.credly.com/badges/fd7c4f63-5704-4c47-939a-1ad699cf7ddb/public_url',
+    logo: '/images/certifications/aws-certified-ai-practitioner.png',
   },
 ]
 

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { contactLinks, experience, profile, projects, stackGroups } from '../../data/portfolio.js'
+import { certifications, contactLinks, experience, profile, projects, stackGroups } from '../../data/portfolio.js'
 
-const helpText = 'Commands: help, profile, about, experience, projects, stack, contact, cv, status, whoami, clear'
+const helpText = 'Commands: help, profile, about, experience, projects, stack, certifications, contact, cv, status, whoami, clear'
 
 const profileSummary = [
   `${profile.name} // ${profile.role}`,
@@ -41,6 +41,12 @@ const projectsSummary = projects.map((project) => {
 const stackSummary = stackGroups.map((group) => [
   group.title,
   group.items.map(([technology]) => technology).join(' // '),
+].join('\n')).join('\n\n')
+
+const certificationsSummary = certifications.map((certification) => [
+  `[${certification.issued}] ${certification.name} (${certification.code})`,
+  `ISSUER: ${certification.issuer}`,
+  `CREDENTIAL: ${certification.href}`,
 ].join('\n')).join('\n\n')
 
 const contactSummary = contactLinks.map((link) => (
@@ -95,6 +101,7 @@ export function TerminalPanel({ open, onClose }) {
       experience: experienceSummary,
       projects: projectsSummary,
       stack: stackSummary,
+      certifications: certificationsSummary,
       contact: contactSummary,
       status: `SIGNAL: STABLE // LOCATION: ${profile.location} // AVAILABILITY: ${profile.status}`,
       whoami: `${profile.name} // ${profile.role} // Systems builder`,

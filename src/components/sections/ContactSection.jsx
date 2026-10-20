@@ -5,7 +5,7 @@ import { SectionLabel } from '../ui/SectionLabel.jsx'
 export function ContactSection({ onOpenTerminal }) {
   return (
     <section className="content-section contact-section" id="contact" aria-labelledby="contact-title">
-      <SectionLabel index="05" title="CONTACT" meta="connection_request.sh" />
+      <SectionLabel index="06" title="CONTACT" meta="connection_request.sh" />
       <Reveal className="contact-layout">
         <div>
           <p className="eyebrow">SIGNAL: OPEN</p>
