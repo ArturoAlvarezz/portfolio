@@ -2,7 +2,7 @@
 
 Portfolio personal construido con React 19 y Vite. La interfaz sigue una dirección brutalista/editorial con contenido enfocado en Cloud, DevOps, infraestructura, observabilidad y redes SDN.
 
-**Live:** https://arturoalvarez.site
+**Live:** https://arturoalvarez.dev
 
 ## Desarrollo
 

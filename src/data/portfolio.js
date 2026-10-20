@@ -142,7 +142,7 @@ export const projects = [
     stack: ['Vue 3', 'FastAPI', 'Sherlock', 'Server-Sent Events', 'Docker', 'Tailwind CSS', 'GitHub Actions'],
     links: {
       repository: 'https://github.com/ArturoAlvarezz/sherlock-app',
-      demo: 'https://sherlock.arturoalvarez.site/',
+      demo: 'https://sherlock.arturoalvarez.dev/',
     },
     metrics: [
       { label: 'Status', value: 'LIVE' },

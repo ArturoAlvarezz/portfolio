@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arturoalvarez.site/sitemap.xml
+Sitemap: https://arturoalvarez.dev/sitemap.xml
