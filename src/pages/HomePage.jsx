@@ -10,9 +10,14 @@ import { ExperienceSection } from '../components/sections/ExperienceSection.jsx'
 import { ProfileSection } from '../components/sections/ProfileSection.jsx'
 import { ProjectsSection } from '../components/sections/ProjectsSection.jsx'
 import { StackSection } from '../components/sections/StackSection.jsx'
+import { useDocumentMeta } from '../hooks/useDocumentMeta.js'
+import { homeMeta } from '../seo.js'
+
+const meta = homeMeta()
 
 export function HomePage({ onOpenTerminal }) {
   const { hash } = useLocation()
+  useDocumentMeta(meta)
 
   useEffect(() => {
     if (!hash) return
