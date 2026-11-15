@@ -96,11 +96,11 @@ describe('portfolio', () => {
     const user = userEvent.setup()
     renderRoute()
 
-    const launcher = screen.getByRole('button', { name: /abrir terminal integrada/i })
+    const launcher = screen.getByRole('button', { name: /terminal ctrl \+ k/i })
     await user.click(launcher)
     const terminal = screen.getByRole('dialog', { name: /wired_terminal/i })
     expect(terminal).toHaveAttribute('open')
-    expect(screen.queryByRole('button', { name: /abrir terminal integrada/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /terminal ctrl \+ k/i })).not.toBeInTheDocument()
 
     const command = screen.getByLabelText(/arturo@wired/i)
     await user.type(command, 'help{Enter}')
@@ -142,7 +142,7 @@ describe('portfolio', () => {
 
     await user.click(screen.getByRole('button', { name: /cerrar terminal/i }))
     expect(terminal).not.toHaveAttribute('open')
-    expect(screen.getByRole('button', { name: /abrir terminal integrada/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /terminal ctrl \+ k/i })).toBeInTheDocument()
   })
 
   it('renders the certifications section with its verified credential', () => {
@@ -169,7 +169,7 @@ describe('portfolio', () => {
     expect(screen.getByText('46.4 ms')).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /constraints & decisions/i })).toBeInTheDocument()
     expect(screen.getByText(/disponibilidad superior al 99/i)).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /abrir terminal integrada/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /terminal ctrl \+ k/i })).toBeInTheDocument()
   })
 
   it('renders the Fuego Dance case study', () => {

@@ -11,7 +11,7 @@
   "description": "Portfolio personal de Arturo Alvarez",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender-meta.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",

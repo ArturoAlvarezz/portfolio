@@ -49,9 +49,9 @@ export function SiteHeader() {
   return (
     <header className="site-header">
       <div className="site-header__inner">
-        <Link className="site-mark" to="/" aria-label="Arturo Álvarez, inicio">
-          <strong>ARTURO.ALVAREZ</strong>
-          <span>CLOUD_SYSTEMS / HUMAN_SIGNAL</span>
+        <Link className="site-mark" to="/">
+          <strong>ARTURO.ALVAREZ<span className="visually-hidden">, inicio</span></strong>
+          <span aria-hidden="true">CLOUD_SYSTEMS / HUMAN_SIGNAL</span>
         </Link>
 
         <nav className="desktop-nav" aria-label="Navegación principal">

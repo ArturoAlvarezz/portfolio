@@ -1,16 +1,22 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { useMemo } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { SiteFooter } from '../components/layout/SiteFooter.jsx'
 import { SiteHeader } from '../components/layout/SiteHeader.jsx'
 import { CrtOverlay, NoiseOverlay } from '../components/motion/Overlays.jsx'
 import { ArchitectureDiagram } from '../components/projects/ArchitectureDiagram.jsx'
 import { MetricsPanel } from '../components/projects/MetricsPanel.jsx'
 import { getProject, projects } from '../data/portfolio.js'
+import { useDocumentMeta } from '../hooks/useDocumentMeta.js'
+import { projectMeta } from '../seo.js'
+import { NotFoundPage } from './NotFoundPage.jsx'
 
 export function ProjectPage() {
   const { slug } = useParams()
   const project = getProject(slug)
+  const meta = useMemo(() => projectMeta(slug), [slug])
+  useDocumentMeta(meta)
 
-  if (!project) return <Navigate to="/" replace />
+  if (!project) return <NotFoundPage />
 
   const currentIndex = projects.findIndex((item) => item.slug === project.slug)
   const nextProject = projects[(currentIndex + 1) % projects.length]

@@ -5,6 +5,8 @@
   --color-panel-light: #171c2c;
   --color-line: #2a3042;
   --color-violet: #8b5cf6;
+  /* Violeta para texto: cumple AA (≥4,5:1) sobre ink, deep-space y panel. */
+  --color-violet-text: #9b71f8;
   --color-ultraviolet: #5b2eff;
   --color-signal-blue: #2f6bff;
   --color-electric-blue: #63a4ff;
@@ -197,7 +199,7 @@ button {
 }
 
 .desktop-nav a span {
-  color: var(--color-violet);
+  color: var(--color-violet-text);
   font-size: 0.58rem;
 }
 
@@ -268,7 +270,7 @@ button {
 }
 
 .mobile-menu li span {
-  color: var(--color-violet);
+  color: var(--color-violet-text);
 }
 
 .mobile-menu__cv {
