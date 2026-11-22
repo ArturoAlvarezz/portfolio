@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { TerminalPanel } from './components/terminal/TerminalPanel.jsx'
 import { HomePage } from './pages/HomePage.jsx'
+import { NotFoundPage } from './pages/NotFoundPage.jsx'
 import { ProjectPage } from './pages/ProjectPage.jsx'
 
 export default function App() {
@@ -28,19 +29,19 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage onOpenTerminal={() => setTerminalOpen(true)} />} />
         <Route path="/projects/:slug" element={<ProjectPage />} />
-        <Route path="*" element={<HomePage onOpenTerminal={() => setTerminalOpen(true)} />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
       {!terminalOpen && (
         <button
           className="terminal-launcher"
           type="button"
-          aria-label="Abrir terminal integrada"
+          aria-keyshortcuts="Control+K"
           aria-haspopup="dialog"
           aria-expanded="false"
           onClick={() => setTerminalOpen(true)}
         >
           <span aria-hidden="true">&gt;_</span>
-          <strong>TERMINAL</strong>
+          <strong>TERMINAL</strong>{' '}
           <small>CTRL + K</small>
         </button>
       )}
