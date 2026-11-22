@@ -1,6 +1,5 @@
 node_modules
 coverage
-src
-public
+dist
 .git
-*.md
+.github

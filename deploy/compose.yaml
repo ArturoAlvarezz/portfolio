@@ -1,0 +1,19 @@
+# Stack de Portfolio. El workflow de CI/CD (.github/workflows/ci-cd.yml) lo copia a /opt/stacks/portfolio (producción)
+# o /opt/stacks/portfolio-pruebas y lo levanta con IMAGEN, CONTENEDOR y PUERTO definidos.
+services:
+  portfolio:
+    image: ${IMAGEN:?IMAGEN no definida}
+    container_name: ${CONTENEDOR:?CONTENEDOR no definido}
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "127.0.0.1:${PUERTO:?PUERTO no definido}:80"
+    labels:
+      com.centurylinklabs.watchtower.enable: "false" # la imagen es local; la actualiza el CI/CD, no Watchtower
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+        reservations:
+          memory: 32M
